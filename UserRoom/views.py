@@ -10,4 +10,4 @@ from rest_framework.response import Response
 class getRoom(APIView):
 
     def get(self, request):
-        return 'hi'
+        return Response({1: 1})
