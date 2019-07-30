@@ -16,4 +16,3 @@ class MessageChatRoom(models.Model):
     user = models.ForeignKey(User, verbose_name='Пользователь', on_delete=models.CASCADE)
     message = models.TextField(verbose_name='Сообщение', max_length=800)
     date = models.DateTimeField(verbose_name='Дата отправки сообщения', auto_now_add=True)
-
