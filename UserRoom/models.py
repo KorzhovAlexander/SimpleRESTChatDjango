@@ -10,6 +10,13 @@ class ChatRoom(models.Model):
     invited_user = models.ManyToManyField(User, through='MessageChatRoom', related_name='invited_user')
     date = models.DateTimeField(verbose_name='Дата присоединения пользователя', auto_now_add=True)
 
+    def get_invited_user(self):
+        return "\n".join([u.username for u in self.invited_user.all()])
+
+    class Meta:
+        verbose_name = "Комната чата"
+        verbose_name_plural = "Комнаты чатов"
+
 
 class MessageChatRoom(models.Model):
     room = models.ForeignKey(ChatRoom, verbose_name='Комната чата', on_delete=models.CASCADE)
