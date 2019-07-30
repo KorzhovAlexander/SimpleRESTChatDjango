@@ -13,6 +13,6 @@ from UserRoom.serializers import ChatRoomSerializer
 class getRoom(APIView):
 
     def get(self, request):
-        room = ChatRoom().objects.all()
+        room = ChatRoom.objects.all()
         serializer = ChatRoomSerializer(room, many=True)
-        return Response(serializer.data)
+        return Response({"data": serializer.data})
