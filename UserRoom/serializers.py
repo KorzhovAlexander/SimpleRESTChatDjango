@@ -9,3 +9,11 @@ class UserSerializer(ModelSerializer):
         model = User
         field = ('id', 'username')
 
+
+class ChatRoomSerializer(ModelSerializer):
+    user = UserSerializer()
+    invited_user = UserSerializer(many=True)
+
+    class Meta:
+        model = ChatRoom
+        fields = ('user', 'invited_user', 'date')
