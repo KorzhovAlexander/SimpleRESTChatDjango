@@ -3,5 +3,5 @@ from django.urls import path
 from UserRoom import views
 
 urlpatterns = [
-    path('aa/', views.getRoom.as_view()),
+    path('', views.getRoom.as_view()),
 ]
