@@ -6,8 +6,8 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class ChatRoom(models.Model):
-    user = models.ForeignKey(User, verbose_name='Создатель комнаты', on_delete=models.CASCADE, choices=User)
-    invited_user = models.ManyToManyField(User, through='MessageChatRoom')
+    user = models.ForeignKey(User, verbose_name='Создатель комнаты', on_delete=models.CASCADE)
+    invited_user = models.ManyToManyField(User, through='MessageChatRoom', related_name='invited_user')
     date = models.DateTimeField(verbose_name='Дата присоединения пользователя', auto_now_add=True)
 
 
