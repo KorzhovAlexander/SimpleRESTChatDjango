@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 class UserSerializer(ModelSerializer):
     class Meta:
         model = User
-        field = ('id', 'username')
+        fields = ('id', 'username')
 
 
 class ChatRoomSerializer(ModelSerializer):
@@ -16,4 +16,4 @@ class ChatRoomSerializer(ModelSerializer):
 
     class Meta:
         model = ChatRoom
-        fields = ('user', 'invited_user', 'date')
+        fields = '__all__'
