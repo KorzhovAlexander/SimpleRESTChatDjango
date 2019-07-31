@@ -10,3 +10,9 @@ from django.contrib.auth.models import User
 class getAllUsers(generics.ListAPIView):
     serializer_class = UserSerializer
     queryset = User.objects.all()
+
+
+class getUserById(generics.RetrieveAPIView):
+    serializer_class = UserSerializer
+    queryset = User.objects.all()
+
