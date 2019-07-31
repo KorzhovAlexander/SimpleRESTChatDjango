@@ -18,6 +18,7 @@ class getRoomById(generics.RetrieveAPIView):
     serializer_class = ChatRoomSerializer
     queryset = ChatRoom.objects.all()
 
+
 class getChat(APIView):
 
     def get(self, request):
