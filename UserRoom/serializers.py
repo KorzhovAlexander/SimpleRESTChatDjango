@@ -1,4 +1,5 @@
 from rest_framework.serializers import ModelSerializer
+from rest_framework import serializers
 
 from UserRoom.models import ChatRoom, MessageChatRoom
 from django.contrib.auth.models import User
@@ -11,7 +12,7 @@ class UserSerializer(ModelSerializer):
 
 
 class ChatRoomSerializer(ModelSerializer):
-    user = UserSerializer()
+    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
     invited_user = UserSerializer(many=True)
 
     class Meta:

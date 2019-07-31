@@ -19,18 +19,28 @@ class getRoomById(generics.RetrieveAPIView):
     queryset = ChatRoom.objects.all()
 
 
-class getChat(APIView):
+class getChatMessages(generics.RetrieveAPIView):
+    serializer_class = MessageChatRoomSerializer
+    queryset = MessageChatRoom.objects.all()
 
-    def get(self, request):
-        room = request.GET.get('room')
-        chat = MessageChatRoom.objects.filter(room=room)
-        serializer = MessageChatRoomSerializer(chat, many=True)
-        return Response({"data": serializer.data})
 
-    def post(self, request):
-        dialog = MessageChatRoomSerializer(data=request.data)
-        if dialog.is_valid():
-            dialog.save(user=request.user)
-            return Response(status=200)
-        else:
-            return Response(status=400)
+class setChatMessage(generics.CreateAPIView):
+    serializer_class = MessageChatRoomSerializer
+    queryset = MessageChatRoom.objects.all()
+
+#
+# class getChat(APIView):
+#
+#     def get(self, request):
+#         room = request.GET.get('room')
+#         chat = MessageChatRoom.objects.filter(room=room)
+#         serializer = MessageChatRoomSerializer(chat, many=True)
+#         return Response({"data": serializer.data})
+#
+#     def post(self, request):
+#         dialog = MessageChatRoomSerializer(data=request.data)
+#         if dialog.is_valid():
+#             dialog.save(user=request.user)
+#             return Response(status=200)
+#         else:
+#             return Response(status=400)
