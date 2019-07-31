@@ -20,8 +20,7 @@ class ChatRoomSerializer(ModelSerializer):
 
 
 class MessageChatRoomSerializer(ModelSerializer):
-    # room = ChatRoomSerializer()
-    # user = UserSerializer()
+    user = UserSerializer()
 
     class Meta:
         model = MessageChatRoom

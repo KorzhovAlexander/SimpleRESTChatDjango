@@ -25,3 +25,11 @@ class getChat(APIView):
         chat = MessageChatRoom.objects.filter(room=room)
         serializer = MessageChatRoomSerializer(chat, many=True)
         return Response({"data": serializer.data})
+
+    def post(self, request):
+        dialog = MessageChatRoomSerializer(data=request.data)
+        if dialog.is_valid():
+            dialog.save(user=request.user)
+            return Response(status=200)
+        else:
+            return Response(status=400)
