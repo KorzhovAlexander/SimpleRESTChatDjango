@@ -1,6 +1,6 @@
 from rest_framework.serializers import ModelSerializer
 
-from UserRoom.models import ChatRoom
+from UserRoom.models import ChatRoom, MessageChatRoom
 from django.contrib.auth.models import User
 
 
@@ -16,4 +16,13 @@ class ChatRoomSerializer(ModelSerializer):
 
     class Meta:
         model = ChatRoom
+        fields = '__all__'
+
+
+class MessageChatRoomSerializer(ModelSerializer):
+    # room = ChatRoomSerializer()
+    # user = UserSerializer()
+
+    class Meta:
+        model = MessageChatRoom
         fields = '__all__'
