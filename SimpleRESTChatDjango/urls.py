@@ -19,5 +19,11 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('room/', include('UserRoom.urls')),
-    path('home/', include('User.urls')),
+    path('', include('User.urls')),
+
+    path('base-auth/', include('rest_framework.urls')),
+
+    path('auth/', include('djoser.urls')),
+    path('auth_token/', include('djoser.urls.authtoken')),
+
 ]
