@@ -9,13 +9,14 @@ from UserRoom.serializers import ChatRoomSerializer, MessageChatRoomSerializer
 
 # Create your views here.
 
+class getAllRooms(generics.ListAPIView):
+    serializer_class = ChatRoomSerializer
+    queryset = ChatRoom.objects.all()
 
-class getRoom(APIView):
 
-    def get(self, request):
-        room = ChatRoom.objects.all()
-        serializer = ChatRoomSerializer(room, many=True)
-        return Response({"data": serializer.data})
+class getRoomById(generics.RetrieveAPIView):
+    serializer_class = ChatRoomSerializer
+    queryset = ChatRoom.objects.all()
 
 
 class getChat(APIView):
