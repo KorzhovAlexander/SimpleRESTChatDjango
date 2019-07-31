@@ -21,9 +21,8 @@ urlpatterns = [
     path('room/', include('UserRoom.urls')),
     path('', include('User.urls')),
 
-    path('base-auth/', include('rest_framework.urls')),
-
+    path('auth/', include('rest_framework.urls')),
     path('auth/', include('djoser.urls')),
-    path('auth_token/', include('djoser.urls.authtoken')),
+    path('auth/', include('djoser.urls.authtoken')),
 
 ]
