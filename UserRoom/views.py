@@ -2,9 +2,9 @@ from django.shortcuts import render
 from rest_framework import generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
-
+from rest_framework.permissions import IsAuthenticated
 from UserRoom.models import ChatRoom, MessageChatRoom
-from UserRoom.serializers import ChatRoomSerializer, MessageChatRoomSerializer
+from UserRoom.serializers import ChatRoomSerializer, MessageChatRoomSerializer, MessageCreateChatRoomSerializer
 
 
 # Create your views here.
@@ -19,15 +19,21 @@ class getRoomById(generics.RetrieveAPIView):
     queryset = ChatRoom.objects.all()
 
 
-class getChatMessages(generics.RetrieveAPIView):
+class getChatMessages(generics.ListAPIView):
+    lookup_field = 'room'
     serializer_class = MessageChatRoomSerializer
     queryset = MessageChatRoom.objects.all()
 
 
 class setChatMessage(generics.CreateAPIView):
-    serializer_class = MessageChatRoomSerializer
+    lookup_field = 'room'
+    serializer_class = MessageCreateChatRoomSerializer
     queryset = MessageChatRoom.objects.all()
+    permission_classes = (IsAuthenticated,)
 
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user,  room=self.kwargs['room'])
+#
 #
 # class getChat(APIView):
 #

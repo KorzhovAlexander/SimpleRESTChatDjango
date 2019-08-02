@@ -21,8 +21,16 @@ class ChatRoomSerializer(ModelSerializer):
 
 
 class MessageChatRoomSerializer(ModelSerializer):
-    user = UserSerializer()
+    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
 
     class Meta:
         model = MessageChatRoom
         fields = '__all__'
+
+
+class MessageCreateChatRoomSerializer(ModelSerializer):
+    room = ChatRoomSerializer(many=True, read_only=True, source='invited_user')
+
+    class Meta:
+        model = MessageChatRoom
+        fields = ('message', 'room')

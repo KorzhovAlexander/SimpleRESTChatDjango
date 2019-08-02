@@ -15,7 +15,10 @@ class ChatRoom(models.Model):
     invited_user = models.ManyToManyField(
         User,
         verbose_name='Участники',
-        related_name='invited_user'
+        related_name='invited_user',
+        through='MessageChatRoom',
+        through_fields=('room', 'user'),
+
     )
     date = models.DateTimeField(
         verbose_name='Дата присоединения пользователя',
